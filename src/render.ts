@@ -82,7 +82,7 @@ function renderIcons(
 
     const elGrid = document.createElement('div');
     elGrid.className =
-      'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 mt-4';
+      'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 p-4';
 
     const fragGrid = document.createDocumentFragment();
 
@@ -176,7 +176,7 @@ function createIcon({ key, path }: IconEntry): HTMLElement {
   img.alt = key;
   img.title = path;
   img.className =
-    'w-16 h-16 object-contain bg-gray-700 p-1 rounded shadow-lg hover:bg-gray-600';
+    'w-16 h-16 object-contain bg-gray-700 p-1 rounded shadow-md shadow-gray-900 hover:bg-gray-600';
   link.appendChild(img);
 
   const caption = document.createElement('div');

@@ -36,6 +36,12 @@ async function setUpPage() {
   const elToc = document.getElementById('toc');
   if (!elToc) throw new Error('toc element is undefined');
 
+  const elScrollTop = document.getElementById('scroll-to-top');
+  if (!elScrollTop) throw new Error('scroll-top element is undefined');
+  elScrollTop.addEventListener('click', () => {
+    elContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
   groupToggle.addEventListener('change', async () => {
     await updateToggleStyles(groupToggle, groupToggleOn, groupToggleOff);
 
