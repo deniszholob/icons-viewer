@@ -1,70 +1,184 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <!-- Meta Data -->
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Language" content="en_US" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Denis Zholob" />
+
+    <!-- Title/Icon -->
+    <title>Icon Viewe</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/icons-viewer/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Icon Viewer</title>
+    <base href="./" />
+
+    <!-- Prefetch/Preconnect -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="//fonts.googleapis.com" crossorigin="anonymous" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com/s/" />
+    <link rel="preconnect" href="//fonts.gstatic.com/s/" crossorigin="anonymous" />
+    <link rel="dns-prefetch" href="//use.fontawesome.com" />
+    <link rel="preconnect" href="//use.fontawesome.com" crossorigin="anonymous" />
+    <!-- <link rel="dns-prefetch" href="//stackpath.bootstrapcdn.com"> -->
+    <!-- <link rel="preconnect" href="//stackpath.bootstrapcdn.com" crossorigin="anonymous"> -->
+    <link rel="dns-prefetch" href="//wiki.factorio.com/" />
+    <link rel="preconnect" href="//wiki.factorio.com/" crossorigin="anonymous" />
+    <link rel="dns-prefetch" href="//gist.githubusercontent.com" />
+    <link rel="preconnect" href="//gist.githubusercontent.com" crossorigin="anonymous" />
+
+    <!-- Fonts -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v6.6.0/js/all.js"
+      integrity="sha384-dgEl3vRKux81M373f/TdgoDTV5oZj+yjHrr/1qR5b4btG5q63kYS62t5kod+7Q6v"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-28080172-12"></script>
+    <script async="">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-28080172-12");
+    </script>
     <script type="module" crossorigin src="/icons-viewer/assets/index-CqHx6fVD.js"></script>
   </head>
 
-  <body class="h-svh w-svw bg-gray-900 text-gray-100 flex flex-row">
-    <!-- Sidebar -->
-    <aside class="w-64 overflow-y-auto bg-gray-800 p-4 text-white flex flex-col">
-      <h2 class="mb-4 text-xl font-bold">Sections</h2>
-      <nav class="space-y-2 overflow-y-auto flex flex-1 flex-col" id="toc">Items Here</nav>
-    </aside>
+  <body class="h-svh w-svw bg-gray-900 text-gray-100 flex flex-col">
+    <div class="flex flex-rowflex-1 overflow-y-auto">
+      <!-- Sidebar -->
+      <aside class="w-64 overflow-y-auto bg-gray-800 p-4 text-white flex flex-col">
+        <h2 class="mb-4 text-xl font-bold">Sections</h2>
+        <nav class="space-y-2 overflow-y-auto flex flex-1 flex-col" id="toc">Items Here</nav>
+      </aside>
 
-    <!-- Main Content -->
-    <div class="flex-1 overflow-y-auto flex flex-col">
-      <div class="flex flex-col gap-4 w-full mx-auto max-w-7xl p-4">
-        <input
-          class="w-full rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
-          id="manifest-url"
-          type="text"
-          placeholder="Input manifest URL..."
-          value="https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons/manifest.json"
-        />
-
-        <div class="flex flex-row gap-2 items-center">
+      <!-- Main Content -->
+      <div class="flex-1 overflow-y-auto flex flex-col">
+        <div class="flex flex-col gap-4 w-full mx-auto max-w-7xl p-4">
           <input
-            class="h-10 rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
-            id="search"
+            class="w-full rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
+            id="manifest-url"
             type="text"
-            placeholder="Search icons..."
+            placeholder="Input manifest URL..."
+            value="https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons/manifest.json"
           />
 
-          <!-- <label class="flex items-center space-x-2">
+          <div class="flex flex-row gap-2 items-center">
             <input
-              class="form-checkbox border-gray-600 bg-gray-700 text-indigo-500"
-              id="group-toggle"
-              type="checkbox"
-              checked="true"
+              class="h-10 rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
+              id="search"
+              type="text"
+              placeholder="Search icons..."
             />
-            <span>Group by folder</span>
-          </label> -->
 
-          <label
-            class="h-10 flex flex-row cursor-pointer gap-0 border overflow-hidden rounded border-gray-700 bg-gray-800 p-0 hover:bg-gray-700"
-            title="Toggle Group or All"
-          >
-            <input type="checkbox" class="sr-only" id="group-toggle" checked="true" />
-            <span id="group-toggle-all" class="px-2 py-1 text-white flex items-center"> ALL </span>
-            <span id="group-toggle-grouped" class="px-2 py-1 text-white flex items-center">
-              GROUPED
-            </span>
-          </label>
+            <!-- <label class="flex items-center space-x-2">
+              <input
+                class="form-checkbox border-gray-600 bg-gray-700 text-indigo-500"
+                id="group-toggle"
+                type="checkbox"
+                checked="true"
+              />
+              <span>Group by folder</span>
+            </label> -->
 
-          <div class="text-gray-400">Total: <span id="total-count">0</span></div>
+            <label
+              class="h-10 flex flex-row cursor-pointer gap-0 border overflow-hidden rounded border-gray-700 bg-gray-800 p-0 hover:bg-gray-700"
+              title="Toggle Group or All"
+            >
+              <input type="checkbox" class="sr-only" id="group-toggle" checked="true" />
+              <span id="group-toggle-all" class="px-2 py-1 text-white flex items-center">
+                ALL
+              </span>
+              <span id="group-toggle-grouped" class="px-2 py-1 text-white flex items-center">
+                GROUPED
+              </span>
+            </label>
+
+            <div class="text-gray-400">Total: <span id="total-count">0</span></div>
+          </div>
+        </div>
+
+        <hr class="border-gray-700" />
+
+        <div class="space-y-6 flex-1 overflow-y-auto w-full p-4">
+          <div id="icon-container" class="mx-auto w-full max-w-7xl">Icons Here</div>
         </div>
       </div>
-
-      <hr class="border-gray-700" />
-
-      <div class="space-y-6 flex-1 overflow-y-auto w-full p-4">
-        <div id="icon-container" class="mx-auto w-full max-w-7xl">Icons Here</div>
-      </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="w-full bg-gray-950 text-xs text-center">
+      <div class="w-full mx-auto max-w-7xl flex flex-row items-center justify-between py px-4">
+        <p class="flex flex-row items-center gap-1">
+          <span class="text-gray-400">Made by</span>
+          <a target="_blank" rel="noopener" href="https://deniszholob.com" title="Denis Zholob">
+            Denis Zholob
+          </a>
+        </p>
+
+        <div class="flex flex-row items-baseline gap-1">
+          <span class="text-gray-400">Donate</span>
+          <p class="flex flex-row flex-wrap items-center">
+            <a
+              target="_blank"
+              rel="noopener"
+              class="py-1"
+              href="https://ko-fi.com/deniszholob"
+              title="Ko-Fi"
+            >
+              <div><i class="fa fa-coffee fa-lg"></i></div>
+            </a>
+            <a
+              target="_blank"
+              rel="noopener"
+              class="py-1"
+              href="https://www.patreon.com/deniszholob"
+              title="Patreon"
+            >
+              <div><i class="fa-lg fa-patreon fab"></i></div>
+            </a>
+          </p>
+        </div>
+
+        <div class="flex flex-row items-center gap-1">
+          <span class="hidden text-gray-400 sm:inline-flex">Connect</span>
+          <p class="flex flex-row">
+            <a
+              target="_blank"
+              rel="noopener"
+              class="py-1"
+              href="https://github.com/deniszholob/icons-viewer"
+              title="Github Source"
+            >
+              <div><i class="fa-github fa-lg fab"></i></div>
+            </a>
+            <a
+              target="_blank"
+              rel="noopener"
+              class="py-1"
+              href="https://discord.gg/PkyzXzz"
+              title="Discord"
+            >
+              <div><i class="fa-discord fa-lg fab"></i></div>
+            </a>
+          </p>
+
+          <!-- <div
+            class="px-1 border border-gray-600 text-gray-400 tooltip-xs"
+            [attr.data-balloon-pos]="'up-right'"
+            [attr.aria-label]="'v' + version + ' - ' + (date | date : 'yyyy/MM/dd')"
+          >
+            v{{ version }}
+          </div> -->
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
