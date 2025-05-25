@@ -72,11 +72,12 @@ function renderIcons(
 
     const elDetails = document.createElement('details');
     elDetails.open = true;
-    elDetails.className = 'bg-gray-800 rounded p-4';
+    elDetails.className = 'bg-gray-800 rounded overflow-hidden';
 
     const elSummary = document.createElement('summary');
     elSummary.textContent = `${group} (${icons.length})`;
-    elSummary.className = 'cursor-pointer text-lg font-semibold text-white';
+    elSummary.className =
+      'cursor-pointer text-lg font-semibold text-white p-4 bg-gray-700';
     elDetails.appendChild(elSummary);
 
     const elGrid = document.createElement('div');
@@ -174,7 +175,8 @@ function createIcon({ key, path }: IconEntry): HTMLElement {
   img.src = path;
   img.alt = key;
   img.title = path;
-  img.className = 'w-16 h-16 object-contain bg-gray-700 p-1 rounded shadow';
+  img.className =
+    'w-16 h-16 object-contain bg-gray-700 p-1 rounded shadow-lg hover:bg-gray-600';
   link.appendChild(img);
 
   const caption = document.createElement('div');

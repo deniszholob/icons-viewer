@@ -17,5 +17,5 @@ If you find the cheat sheet or the source code useful, consider:
 
 # Screenshots
 
-![Factory Game](./public/screenshots/screenshot_1120x1979.png)
-![Factory Game](./public/screenshots/screenshot_1280x720.png)
+![Icon Viewer](./public/screenshots/screenshot_1080x1920.png)
+![Icon Viewer](./public/screenshots/screenshot_1280x720.png)
