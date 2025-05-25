@@ -70,7 +70,7 @@
             value="https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons/manifest.json"
           />
 
-          <div class="flex flex-row gap-2 items-center">
+          <div class="flex flex-row gap-2 items-center justify-between">
             <input
               class="h-10 rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
               id="search"
@@ -102,6 +102,8 @@
             </label>
 
             <div class="text-gray-400">Total: <span id="total-count">0</span></div>
+
+            <div id="file-links" class="flex flex-row gap-4">Place file links here</div>
           </div>
         </div>
 
@@ -116,11 +118,17 @@
     </div>
 
     <!-- Footer -->
-    <footer class="w-full bg-gray-950 text-xs text-center">
+    <footer class="w-full bg-gray-950 text-center">
       <div class="w-full mx-auto max-w-7xl flex flex-row items-center justify-between py px-4">
         <p class="flex flex-row items-center gap-1">
           <span class="text-gray-400">Made by</span>
-          <a target="_blank" rel="noopener" href="https://deniszholob.com" title="Denis Zholob">
+          <a
+            target="_blank"
+            rel="noopener"
+            href="https://deniszholob.com"
+            title="Denis Zholob"
+            class="py-1 text-orange-400 hover:text-orange-600"
+          >
             Denis Zholob
           </a>
         </p>
@@ -131,7 +139,7 @@
             <a
               target="_blank"
               rel="noopener"
-              class="py-1"
+              class="py-1 text-orange-400 hover:text-orange-600"
               href="https://ko-fi.com/deniszholob"
               title="Ko-Fi"
             >
@@ -140,7 +148,7 @@
             <a
               target="_blank"
               rel="noopener"
-              class="py-1"
+              class="py-1 text-orange-400 hover:text-orange-600"
               href="https://www.patreon.com/deniszholob"
               title="Patreon"
             >
@@ -155,7 +163,7 @@
             <a
               target="_blank"
               rel="noopener"
-              class="py-1"
+              class="py-1 text-orange-400 hover:text-orange-600"
               href="https://github.com/deniszholob/icons-viewer"
               title="Github Source"
             >
@@ -164,7 +172,7 @@
             <a
               target="_blank"
               rel="noopener"
-              class="py-1"
+              class="py-1 text-orange-400 hover:text-orange-600"
               href="https://discord.gg/PkyzXzz"
               title="Discord"
             >

@@ -122,7 +122,7 @@ function createTocItem(group: string, count: number): HTMLElement {
   const elTocA = document.createElement('a');
   elTocA.href = `#${sectionId}`;
   elTocA.textContent = `${group} (${count})`;
-  elTocA.className = 'block hover:underline';
+  elTocA.className = 'text-orange-400 hover:text-orange-600  hover:underline';
   elTocA.addEventListener('click', (e) => {
     e.preventDefault();
     const section = document.getElementById(sectionId);

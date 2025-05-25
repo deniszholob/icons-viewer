@@ -3,15 +3,16 @@ export interface IconEntry {
   path: string;
 }
 export async function fetchIcons(url: string, errorEl: HTMLElement) {
-  const path =
-    'https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons';
+  //   const path =
+  //     'https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons';
   return fetch(url)
     .then((res: Response): Promise<Record<string, string>> => res.json())
     .then((manifest) =>
       Object.entries(manifest).map(
         ([key, iconPath]): IconEntry => ({
           key,
-          path: getBasePath(path) + iconPath,
+          path: iconPath,
+          // : getBasePath(path) + iconPath,
         }),
       ),
     )
@@ -21,8 +22,8 @@ export async function fetchIcons(url: string, errorEl: HTMLElement) {
     });
 }
 
-function getBasePath(url: string): string {
-  const segments = url.split('/');
-  segments.pop(); // remove the last segment
-  return segments.join('/') + '/';
-}
+// function getBasePath(url: string): string {
+//   const segments = url.split('/');
+//   segments.pop(); // remove the last segment
+//   return segments.join('/') + '/';
+// }

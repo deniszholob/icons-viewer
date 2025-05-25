@@ -42,6 +42,9 @@ async function setUpPage() {
     elContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
+  const elFileLinks = document.getElementById('file-links');
+  if (!elFileLinks) throw new Error('file-links element is undefined');
+
   groupToggle.addEventListener('change', async () => {
     await updateToggleStyles(groupToggle, groupToggleOn, groupToggleOff);
 
@@ -79,6 +82,8 @@ async function setUpPage() {
       groupToggle.checked,
     );
     // });
+
+    updateFileLinks(elFileLinks, manifest.value);
   });
 
   // Initialize on page load
@@ -91,6 +96,36 @@ async function setUpPage() {
     search.value,
     groupToggle.checked,
   );
+
+  updateFileLinks(elFileLinks, manifest.value);
+}
+
+function updateFileLinks(elFileLinks: HTMLElement, manifestUrl: string): void {
+  elFileLinks.innerHTML = '';
+
+  const manifestBase = manifestUrl.split('/').slice(0, -1).join('/');
+  const manifestName = manifestUrl.split('/').pop();
+  if (!manifestName) return;
+  const enumName = `${manifestBase.split('/').pop()}.enum.ts`;
+  const enumUrl = `${manifestBase}/${enumName}`;
+
+  const elManifestLink = document.createElement('a');
+  elManifestLink.href = manifestUrl;
+  elManifestLink.textContent = manifestName;
+  elManifestLink.target = '_blank';
+  elManifestLink.rel = 'noopener noreferrer';
+  elManifestLink.className =
+    'text-orange-400 hover:text-orange-600 hover:underline';
+  elFileLinks.append(elManifestLink);
+
+  const elEnumLink = document.createElement('a');
+  elEnumLink.href = enumUrl;
+  elEnumLink.textContent = enumName;
+  elEnumLink.target = '_blank';
+  elEnumLink.rel = 'noopener noreferrer';
+  elEnumLink.className =
+    'text-orange-400 hover:text-orange-600 hover:underline';
+  elFileLinks.append(elEnumLink);
 }
 
 function updateToggleStyles(
@@ -99,11 +134,11 @@ function updateToggleStyles(
   offEl: HTMLElement,
 ): void {
   if (toggleEl.checked) {
-    onEl.classList.add('bg-orange-600');
-    offEl.classList.remove('bg-orange-800');
+    onEl.classList.add('bg-orange-500');
+    offEl.classList.remove('bg-orange-600');
   } else {
-    onEl.classList.remove('bg-orange-600');
-    offEl.classList.add('bg-orange-800');
+    onEl.classList.remove('bg-orange-500');
+    offEl.classList.add('bg-orange-600');
   }
 }
 
