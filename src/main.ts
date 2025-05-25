@@ -1,5 +1,4 @@
 import { renderManifest } from './render';
-import { debounce } from './utils';
 
 function main() {
   console.log('main');

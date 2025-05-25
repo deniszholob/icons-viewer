@@ -1,0 +1,85 @@
+# CI/CD for Github Actions
+# @author Denis Zholob (deniszholob.com)
+# Builds and deploys app to Github Pages
+# ====================================== #
+
+name: Build and Deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches:
+      - "master"
+      - "main"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.12.1"
+          cache: "pnpm"
+
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+
+      - name: Cache node modules
+        id: npm-cache
+        uses: actions/cache@v4
+        with:
+          path: ${{steps.npm-cache-dir.outputs.dir}}
+          key: ${{runner.os}}-node-${{hashFiles('**/pnpm-lock.yaml')}}
+          restore-keys: |
+            ${{runner.os}}-node-
+            ${{runner.os}}-
+
+      - name: Install NPM Dependencies
+        run: pnpm run i
+
+      - name: Build
+        run: sh ./.github/ci/build.sh # Generates the dist folder with built angular app
+
+      # Save dist artifacts for deployment jobs
+      # https://docs.github.com/en/actions/learn-github-actions/essential-features-of-github-actions#sharing-data-between-jobs
+      - name: Archive web demo build
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist # Directory to push to GitHub Pages
+
+  # Ref: https://focisolutions.com/2020/04/github-actions-deploying-an-angular-app/
+  deploy-github:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: dist
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist
