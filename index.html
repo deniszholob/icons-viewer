@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icon Viewer</title>
+    <script type="module" src="/src/main.ts"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="h-svh w-svw bg-gray-900 text-gray-100 flex flex-row">
+    <!-- Sidebar -->
+    <aside class="w-64 overflow-y-auto bg-gray-800 p-4 text-white flex flex-col">
+      <h2 class="mb-4 text-xl font-bold">Sections</h2>
+      <nav class="space-y-2 overflow-y-auto flex flex-1 flex-col" id="toc">Items Here</nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 overflow-y-auto flex flex-col">
+      <div class="flex flex-col gap-4 w-full mx-auto max-w-7xl p-4">
+        <input
+          class="w-full rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
+          id="manifest-url"
+          type="text"
+          placeholder="Input manifest URL..."
+          value="https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons/manifest.json"
+        />
+
+        <div class="flex flex-row gap-2 items-center">
+          <input
+            class="h-10 rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
+            id="search"
+            type="text"
+            placeholder="Search icons..."
+          />
+
+          <!-- <label class="flex items-center space-x-2">
+            <input
+              class="form-checkbox border-gray-600 bg-gray-700 text-indigo-500"
+              id="group-toggle"
+              type="checkbox"
+              checked="true"
+            />
+            <span>Group by folder</span>
+          </label> -->
+
+          <label
+            class="h-10 flex flex-row cursor-pointer gap-0 border overflow-hidden rounded border-gray-700 bg-gray-800 p-0 hover:bg-gray-700"
+            title="Toggle Group or All"
+          >
+            <input type="checkbox" class="sr-only" id="group-toggle" checked="true" />
+            <span id="group-toggle-all" class="px-2 py-1 text-white flex items-center"> ALL </span>
+            <span id="group-toggle-grouped" class="px-2 py-1 text-white flex items-center">
+              GROUPED
+            </span>
+          </label>
+
+          <div class="text-gray-400">Total: <span id="total-count">0</span></div>
+        </div>
+      </div>
+
+      <hr class="border-gray-700" />
+
+      <div class="space-y-6 flex-1 overflow-y-auto w-full p-4">
+        <div id="icon-container" class="mx-auto w-full max-w-7xl">Icons Here</div>
+      </div>
+    </div>
+  </body>
+</html>
