@@ -8,7 +8,7 @@
     <meta name="author" content="Denis Zholob" />
 
     <!-- Title/Icon -->
-    <title>Icon Viewe</title>
+    <title>Icon Viewer</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <base href="./" />
@@ -62,13 +62,22 @@
       <!-- Main Content -->
       <div class="flex-1 overflow-y-auto flex flex-col">
         <div class="flex flex-col gap-4 w-full mx-auto max-w-7xl p-4">
-          <input
-            class="w-full rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
-            id="manifest-url"
-            type="text"
-            placeholder="Input manifest URL..."
-            value="https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons/manifest.json"
-          />
+          <div class="flex flex-col gap-1">
+            <input
+              class="w-full rounded border border-gray-700 bg-gray-800 px-4 py-2 text-white placeholder-gray-400"
+              id="manifest-url"
+              type="text"
+              placeholder="Input manifest URL..."
+              value="https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/factorio-icons/manifest.json"
+            />
+            <p class="text-gray-400 text-xs">
+              Link to a manifest.json with key value pairs where:
+              <code class="font-bold">key</code> is the icon name and
+              <code class="font-bold">value</code> is the icon URL. <br />Groups can be created with
+              <code class="font-bold">_</code> in the key. Example:
+              <kbd>"fluid_lava": "lava.png"</kbd>
+            </p>
+          </div>
 
           <div class="flex flex-row gap-2 items-center justify-between">
             <input

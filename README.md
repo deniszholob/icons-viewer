@@ -10,7 +10,7 @@ https://raw.githubusercontent.com/deniszholob/icons-factorio/refs/heads/main/fac
 
 # Support Me
 
-If you find the cheat sheet or the source code useful, consider:
+If you find this or the source code useful, consider:
 
 - Donating Ko-fi: https://ko-fi.com/deniszholob
 - Supporting on Patreon: https://www.patreon.com/deniszholob
