@@ -1,19 +1,24 @@
 import { renderManifest } from './render';
 
+const QUERY_PARAMS_KEY = 'url';
+
 function main() {
-  console.log('main');
+  // console.log('main');
   document.addEventListener('DOMContentLoaded', async () => {
-    await setUpPage();
+    await setUpPage(getQueryParams());
   });
 }
 
-async function setUpPage() {
+async function setUpPage(url?: string) {
   console.log('setUpPage');
   const manifest = document.getElementById('manifest-url');
   if (!manifest) throw new Error('search element is undefined');
   if (!(manifest instanceof HTMLInputElement)) {
     throw new Error('toggle is not a checkbox');
   }
+  if (url) manifest.value = url;
+  syncUrlParam(manifest.value);
+
   const search = document.getElementById('search');
   if (!search) throw new Error('search element is undefined');
   if (!(search instanceof HTMLInputElement)) {
@@ -72,6 +77,8 @@ async function setUpPage() {
   });
 
   manifest.addEventListener('change', async () => {
+    syncUrlParam(manifest.value);
+
     // debounce(() => {
     await renderManifest(
       elContainer,
@@ -140,6 +147,27 @@ function updateToggleStyles(
     onEl.classList.remove('bg-orange-500');
     offEl.classList.add('bg-orange-600');
   }
+}
+
+// ?url=http://localhost:4201/assets/configs/factory-game/manifest.json
+function getQueryParams(): string | undefined {
+  const queryParams = new URLSearchParams(window.location.search);
+  return queryParams.get(QUERY_PARAMS_KEY) ?? undefined;
+}
+
+function syncUrlParam(value: string | undefined): void {
+  const currentParams = new URLSearchParams(window.location.search);
+
+  if (value && value.trim().length > 0) {
+    currentParams.set(QUERY_PARAMS_KEY, value.trim());
+  } else {
+    currentParams.delete(QUERY_PARAMS_KEY);
+  }
+
+  const newRelativePathQuery =
+    window.location.pathname +
+    (currentParams.toString() ? '?' + currentParams.toString() : '');
+  window.history.replaceState(null, '', newRelativePathQuery);
 }
 
 main();
